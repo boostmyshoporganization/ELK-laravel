@@ -1,0 +1,19 @@
+{
+    "name": "elk/laravel",
+    "description": "This package retrieve information from the requests",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "BoostMyShop",
+            "email": "contact@boostmyshop.com"
+        }
+    ],
+    "require": {
+        "laravel/framework": "4.2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Elk\\Laravel\\": "src/code/"
+        }
+    }
+}
