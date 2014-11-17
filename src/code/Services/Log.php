@@ -10,6 +10,7 @@ class Log
     protected $startMemory;
 
     protected $action;
+    protected $method;
 
     protected $logger;
 
@@ -26,13 +27,14 @@ class Log
         $this->startTime = microtime(true);
         $this->startMemory = memory_get_usage(true);
         $this->action = $route->getPath();
+        $this->method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'cli';
     }
 
     public function after()
     {
         $time = round(microtime(true) - $this->startTime, 2);
         $memory = memory_get_usage(true) - $this->startMemory;
-        $message = 'laravel | ' . $this->action . ' | ' . $time . ' | ' . $memory;
+        $message = 'laravel | ' . $this->method . ' | ' . $this->action . ' | ' . $time . ' | ' . $memory;
 
         $this->logger->addInfo($message);
     }
