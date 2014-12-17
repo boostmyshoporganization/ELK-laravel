@@ -16,10 +16,16 @@ class Log
 
     public function __construct()
     {
-        $this->logger = new Logger(strtoupper('elk-laravel'));
-        $this->logger->pushHandler(
-            new StreamHandler(storage_path() . '/logs/elk-laravel.log')
+        $formatter = new \Monolog\Formatter\LineFormatter(
+            '[%datetime%] %channel%.%level_name% %message% %extra%'."\n",
+            'c'
         );
+
+        $handler = new StreamHandler(storage_path() . '/logs/elk-laravel.log');
+        $handler->setFormatter($formatter);
+
+        $this->logger = new Logger(strtoupper('elk-laravel'));
+        $this->logger->pushHandler($handler);
     }
 
     public function before($route)
