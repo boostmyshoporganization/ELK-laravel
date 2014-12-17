@@ -17,7 +17,7 @@ class Log
     public function __construct()
     {
         $formatter = new \Monolog\Formatter\LineFormatter(
-            '[%datetime%] %channel%.%level_name% %message% %extra%'."\n",
+            '[%datetime%] %channel%.%level_name%: %message% %extra%'."\n",
             'c'
         );
 
